@@ -21,25 +21,23 @@ public class RecipesController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Recipes getRecipeById(@PathVariable("id") ObjectId id) {
-        return repository.findBy_id(id);
+    public Recipes getRecipeById(@PathVariable("id") String id) {
+        return repository.findById(id).get();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void modifyRecipeById(@PathVariable("id") ObjectId id, @Valid @RequestBody Recipes recipes) {
+    public void modifyRecipeById(@PathVariable("id") String id, @Valid @RequestBody Recipes recipes) {
         recipes.setId(id);
         repository.save(recipes);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Recipes createRecipe(@Valid @RequestBody Recipes recipes) {
-        recipes.setId(ObjectId.get());
-        repository.save(recipes);
-        return recipes;
+        return repository.save(recipes);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteRecipe(@PathVariable ObjectId id) {
-        repository.delete(repository.findBy_id(id));
+    public void deleteRecipe(@PathVariable String id) {
+        repository.delete(repository.findById(id).get());
     }
 }

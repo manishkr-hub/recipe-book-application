@@ -1,15 +1,11 @@
 package com.eichiba.recipebook.models;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
 public class Recipes {
 
-    @Id
-    private ObjectId id;
-
+    private String id;
     private String name;
     private List<Ingredient> ingredients;
     private String direction;
@@ -18,7 +14,7 @@ public class Recipes {
 
     public Recipes() {}
 
-    public Recipes(ObjectId id, String name, List<Ingredient> ingredients, String direction, int prepTime, int numberOfRatings) {
+    public Recipes(String id, String name, List<Ingredient> ingredients, String direction, int prepTime, int numberOfRatings) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -27,11 +23,11 @@ public class Recipes {
         this.numberOfRatings = numberOfRatings;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
